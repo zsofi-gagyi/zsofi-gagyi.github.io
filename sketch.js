@@ -59,12 +59,20 @@ function setupPlaceholderPhoto() {
 }
 
 ///// create /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function createPattern() {
+function cleanUpBeforeDrawingPattern {
     if (patternText !== undefined) {
         patternText.remove();
     }
+    
+    if (slider !== undefined) {
+        slider.remove();
+    }
 
     clear();
+}
+
+function createPattern() {
+    cleanUpBeforeDrawingPattern();
 
     rows = parseInt(rowsInput.value(), 10);
 
@@ -83,10 +91,6 @@ function createPattern() {
 
     let gradient;
     if (radio.value() === '1') {
-        if (slider !== undefined) {
-            slider.remove();
-        }
-
         gradient = calculateCircularGradient(rows);
         renderCircle();
         renderCommonElements(gradient)

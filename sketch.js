@@ -83,18 +83,20 @@ function createPattern() {
 
     let gradient;
     if (radio.value() === '1') {
+        if (slider !== undefined) {
+            slider.remove();
+        }
+
         gradient = calculateCircularGradient(rows);
         renderCircle();
         renderCommonElements(gradient)
     }
     else {
-        if (slider === undefined) {
-            slider = createSlider(0, 1, 0.7, 0.01);
-            slider.position(windowWidth / 3.8, windowHeight * 0.45);
-            slider.style('width', windowHeight * 0.85 + 'px');
-            slider.style('transform', 'rotate(90deg)');
-            slider.input(renderBezier);
-        }
+        slider = createSlider(0, 1, 0.7, 0.01);
+        slider.position(windowWidth / 3.8, windowHeight * 0.45);
+        slider.style('width', windowHeight * 0.85 + 'px');
+        slider.style('transform', 'rotate(90deg)');
+        slider.input(renderBezier);
 
         renderBezier();
     }

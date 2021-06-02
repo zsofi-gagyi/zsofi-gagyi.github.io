@@ -54,7 +54,8 @@ function setupCurveSelection() {
 }
 
 function setupPlaceholderPhoto() {
-    image(loadImage('knit.png'), windowHeight, 0, windowWidth - windowHeight, windowHeight);
+    loadImage('knit.png', img => {
+        image(img, windowHeight, 0, windowWidth - windowHeight, windowHeight)});
 }
 
 ///// create /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -339,7 +340,7 @@ function generatePattern(gradient) {
 function renderPatternText(pattern) {
     patternText = createElement('p', '...AAAAA, ' + pattern.join(', ') + ', BBBBB...');
     patternText.position(36, windowHeight * 0.9 + 16);
-    patternText.size(windowHeight - 40, windowHeight * 0.1);   
+    patternText.size(windowHeight - 40, windowHeight * 0.1 - 15);   
     patternText.style('margin', '0');
     patternText.style('overflow', 'auto');
 }

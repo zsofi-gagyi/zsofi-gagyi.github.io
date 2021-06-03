@@ -59,7 +59,7 @@ function setupPlaceholderPhoto() {
 }
 
 ///// create /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function cleanUpBeforeDrawingPattern {
+function cleanUpBeforeDrawingPattern() {
     if (patternText !== undefined) {
         patternText.remove();
     }

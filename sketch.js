@@ -1,4 +1,4 @@
-let rowsInput, button, userMessage, colorPicker, patternText, radio, slider, rows;
+let rowsInput, button, userMessage, colorPicker, patternText, radio, slider, rows, gray;
 
 ///// setup /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function setup() {
@@ -19,13 +19,15 @@ function setupColorSelection() {
     userMessage3 = createElement('h3', 'Personalize your colors using these palettes:');
     userMessage3.position(20, 130);
     
-    colorPicker1 = createColorPicker('#da8568');
+    colorPicker1 = createColorPicker('#72b399');//'#da8568');
     colorPicker1.position(20, 170);
     colorPicker1.input(createPattern);
     
-    colorPicker2 = createColorPicker('#6e745d');
+    colorPicker2 = createColorPicker('#5e5a86');// '#6e745d');
     colorPicker2.position(120, 170);
     colorPicker2.input(createPattern);
+
+    gray = color(239,239,239)
 }
 
 function setupRowNumberInput() {
@@ -63,7 +65,7 @@ function cleanUpBeforeDrawingPattern() {
     if (patternText !== undefined) {
         patternText.remove();
     }
-    
+
     if (slider !== undefined) {
         slider.remove();
     }
@@ -96,9 +98,11 @@ function createPattern() {
         renderCommonElements(gradient)
     }
     else {
+        var sliderLength =  windowHeight * 0.875;
+
         slider = createSlider(0, 1, 0.7, 0.01);
-        slider.position(windowWidth / 3.8, windowHeight * 0.45);
-        slider.style('width', windowHeight * 0.85 + 'px');
+        slider.position(windowHeight * 0.95 - sliderLength / 2, windowHeight * 0.025 + sliderLength / 2);
+        slider.style('width', sliderLength + 'px');
         slider.style('transform', 'rotate(90deg)');
         slider.input(renderBezier);
 
@@ -182,7 +186,7 @@ function calculateBezierGradient(rows) {
 function drawBezierCurve() {
     var pointiness = slider.value() * windowHeight * 2/3 + windowHeight * 0.2;
 
-    fill(color(239,239,239));
+    fill(gray);
     beginShape();
     vertex(0,0);
     vertex(0, windowHeight * 0.9);
@@ -246,9 +250,9 @@ function renderPatternAsImage(gradient) {
 
 function renderCircle() {
     noStroke();
-    fill(color(239,239,239));
+    fill(gray);
     circle(windowHeight * 0.1, windowHeight * 0.1, windowHeight * 0.8 * 2);
-    stroke(color(239,239,239));
+    stroke(gray);
 }
 
 function renderPatternAsLine(gradient) {
@@ -275,7 +279,7 @@ function renderPatternAsLine(gradient) {
 }
 
 function drawStraightEnds(width, position) {
-    stroke(color(239,239,239));
+    stroke(gray);
     fill(colorPicker2.color());
     rect(0, position.y - width, windowHeight * 0.1 + width, width * 2);
 

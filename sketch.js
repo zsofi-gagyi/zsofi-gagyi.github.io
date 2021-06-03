@@ -56,7 +56,7 @@ function setupCurveSelection() {
 }
 
 function setupPlaceholderPhoto() {
-    loadImage('knit.png', img => {
+    loadImage('blueKnit.png', img => {
         image(img, windowHeight, 0, windowWidth - windowHeight, windowHeight)});
 }
 

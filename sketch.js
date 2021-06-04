@@ -19,11 +19,11 @@ function setupColorSelection() {
     userMessage3 = createElement('h3', 'Personalize your colors using these palettes:');
     userMessage3.position(20, 130);
     
-    colorPicker1 = createColorPicker('#72b399');//'#da8568');
+    colorPicker1 = createColorPicker('#72b399');
     colorPicker1.position(20, 170);
     colorPicker1.input(createPattern);
     
-    colorPicker2 = createColorPicker('#5e5a86');// '#6e745d');
+    colorPicker2 = createColorPicker('#5e5a86');
     colorPicker2.position(120, 170);
     colorPicker2.input(createPattern);
 
@@ -47,8 +47,8 @@ function setupCurveSelection() {
     userMessage2.position(20, 70);
     
     radio = createRadio();
-    radio.option(1, 'circle     ');
-    radio.option(2, 'adjustable bezier curve');
+    radio.option(1, 'adjustable bezier curve');
+    radio.option(2, 'circle');
     radio.style('data-type', 'horizontal');
     radio.position(20, 110);
     radio.changed(createPattern);
@@ -56,7 +56,7 @@ function setupCurveSelection() {
 }
 
 function setupPlaceholderPhoto() {
-    loadImage('blueKnit.jpg', img => {
+    loadImage('knit.jpg', img => {
         image(img, windowHeight, 0, windowWidth - windowHeight, windowHeight)});
 }
 
@@ -92,7 +92,7 @@ function createPattern() {
     userMessage.html('Gradient pattern for ' + rows + ' rows:');
 
     let gradient;
-    if (radio.value() === '1') {
+    if (radio.value() === '2') {
         gradient = calculateCircularGradient(rows);
         renderCircle();
         renderCommonElements(gradient)
@@ -225,9 +225,7 @@ function moveUpBy(position, distance) {
 }
 
 function stillInsideCircle(position, r) {
-    return radio.value() === '1'
-        ? (position.x * position.x + position.y * position.y <= r * r)
-        : false;
+    return position.x * position.x + position.y * position.y <= r * r;
 }
 
 function stillInsideBezier(position) {
